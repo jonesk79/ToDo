@@ -31,10 +31,11 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(:name => params[:name],
-                    :description => params[:description])
+                    :description => params[:description],
+                    :done => params[:done])
       render('tasks/success.html.erb')
     else
-      render('tasks/:id/edit.html.erb')
+      render('tasks/edit.html.erb')
     end
   end
 
@@ -42,5 +43,15 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     render('tasks/destroy.html.erb')
+  end
+
+  def mark_done
+    @task = Task.find(params[:id])
+    @task.update(:done => true)
+    render('tasks/done.html.erb')
+  end
+
+  def show_done
+    @done_tasks = Task.all.where(:done => true)
   end
 end
