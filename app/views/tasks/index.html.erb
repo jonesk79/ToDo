@@ -1,0 +1,21 @@
+<h1>Tasks</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+  <div style="border-bottom: 2px solid red">
+  <li><a href="<%= task.id %>"><%= task.name %></a></li>
+  <span style="margin-left: 20px"><%= task.description%></span>
+  </div>
+  <% end %>
+</ul>
+
+<h2>Add Task</h2>
+<form action="/" method="post" style="background-color: lightblue;">
+  <h2>Task</h2>
+  <title for="new_task">Insert task name:</title>
+  <input id="new_task" name="name" type="text">
+  <h4>Description</h4>
+  <title for="new_task_description">Insert task description:</title>
+  <input id="new_task_description" name="description" type="text">
+  <button>Submit New Task >></button>
+</form>
